@@ -10,10 +10,17 @@
     <!--Vue 인스턴스 생성-->
     <div id="app">
         <div>
-            {{person.name}} {{person.age}}    <!--생성된 변수 사용하기-->
+            {{person.name}} {{person.age}}                  <!--생성된 변수 사용하기-->
         </div>
         <div>
-            {{nextYear('안녕하세요')}}           <!--생성된 함수 사용하기-->
+            {{nextYear('안녕하세요')}}                         <!--생성된 함수 사용하기-->
+        </div>
+        <div>
+           <!-- <input v-bind:type="inputType" v-bind:value = "inputData">-->   <!--data 바인딩-->
+            <input :type="inputType" :value = "inputData">                      <!--data 바인딩-->
+        </div>
+        <div>
+            <a :href="getMyGithub()"> github link </a>                                   <!--data 바인딩-->
         </div>
     </div>
 
@@ -24,16 +31,23 @@
                 person: {
                     name: "Song Dae Sun",
                     age: 22
-                }
+                },
+
+                inputData: 'hello',             //data 바인딩 용도
+                inputType: 'text',              //data 바인딩 용도
+                link: "https://github.com/"       
             },
             methods:{    // 함수 정의
                 //nextYear: function(greeting){
                 nextYear(greeting){
                     return `${greeting}! ${this.person.name}은(는) 내년에 ${this.person.age+1}살 입니다.`;
                 },
-                otherMethod: function(greeting){
+                otherMethod(greeting){
                     this.nextYear(greeting);
-                }
+                },
+                getMyGithub(){
+                    return `${this.link}/SongDaeSun`
+                },
             }
         });
 
