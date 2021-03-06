@@ -22,6 +22,23 @@
         <div>
             <a :href="getMyGithub()"> github link </a>                                   <!--data 바인딩-->
         </div>
+        <div>
+            <!--<button onclick="alert('Hello Event')"> Click Me </button>-->            <!--event-->
+            <button v-on:click="buttonAlert()"> Click Me </button>                       <!--event-->
+        </div>
+        <div>
+            <button v-on:click="plusYear()"> add year </button>                 <!--event-->
+            <button v-on:click="minusYear()"> sub year </button>                <!--event-->
+            {{year}}
+        </div>
+        <div>
+            <!--form은 submit을 한번하면 reload된다.-->
+            <!--v-on:submit.prevent에서 preventr가 reload를 막아준다.-->
+            <form v-on:submit.prevent="submitForm()">                  
+                <input type="text"><br>
+                <button type="submit"> submit </button>                 <!--event-->
+            </form>
+        </div>
     </div>
 
     <script>
@@ -35,7 +52,9 @@
 
                 inputData: 'hello',             //data 바인딩 용도
                 inputType: 'text',              //data 바인딩 용도
-                link: "https://github.com/"       
+                link: "https://github.com/",
+                year: 2021,
+                
             },
             methods:{    // 함수 정의
                 //nextYear: function(greeting){
@@ -46,7 +65,20 @@
                     this.nextYear(greeting);
                 },
                 getMyGithub(){
-                    return `${this.link}/SongDaeSun`
+                    return `${this.link}SongDaeSun`
+                },
+                buttonAlert(){
+                    alert("hello");
+                },
+                plusYear(){        //for event
+                    this.year++;
+                },
+                minusYear(){       //for event
+                    this.year--;
+                },
+                submitForm(){       //for event
+                    alert("submitted!");
+                    console.log("reload");
                 },
             }
         });
