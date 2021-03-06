@@ -57,6 +57,20 @@
                 {{text}}<br>               
             </form>
         </div>
+        <div> <!--computed 속성-->
+            <br>
+            {{number + 1}}
+        </div>
+        <div> <!--computed 속성-->
+            <br>
+            <!--{{reverseMessage()}} 괄호는 function에만 쓰는 것이다.-->
+            <button @click="changeMessage"> Change Message</button>
+            {{reverseMessage}}
+            {{reverseMessage}}
+            {{reverseMessage}}
+        </div>
+        <!--function은 호출될 때마다 새로 계산을 하지만,
+            computed 속성은 미리 다 계산을 한 후에 caching을 해둔다.-->
     </div>
 
     <script>
@@ -73,7 +87,8 @@
                 link: "https://github.com/",
                 year: 2021,
                 text: "hello",
-                
+                number: 1,
+                message: "안녕하세요",             //computed 속성
             },
             methods:{    // 함수 정의
                 //nextYear: function(greeting){
@@ -103,6 +118,15 @@
                     //console.log(event);
                     this.text = event.target.value;
                 },
+                changeMessage(){
+                    this.message = "감사합니다";
+                },
+            },
+            //computed 속성
+            computed:{
+                reverseMessage(){
+                    return this.message.split("").reverse().join("")
+                }
             }
         });
 
