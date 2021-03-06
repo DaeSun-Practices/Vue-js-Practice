@@ -71,6 +71,14 @@
         </div>
         <!--function은 호출될 때마다 새로 계산을 하지만,
             computed 속성은 미리 다 계산을 한 후에 caching을 해둔다.-->
+        
+        <div> <!--watch 속성-->
+            <br>
+            {{message}} <br>
+            <button @click="changeMessage"> Change Message</button> <br>
+            {{updated}}
+        </div>
+
     </div>
 
     <script>
@@ -89,6 +97,7 @@
                 text: "hello",
                 number: 1,
                 message: "안녕하세요",             //computed 속성
+                updated: "no",                  //watch 속성
             },
             methods:{    // 함수 정의
                 //nextYear: function(greeting){
@@ -127,7 +136,14 @@
                 reverseMessage(){
                     return this.message.split("").reverse().join("")
                 }
-            }
+            },
+            //watch 속성
+            watch:{
+                message(newVal, oldVal){ //data가 변경되었는지를 감시하는 용도
+                    console.log(newVal, oldVal);
+                    this.updated = 'yes';
+                }
+            },
         });
 
     </script>
