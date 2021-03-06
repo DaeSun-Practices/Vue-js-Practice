@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--Vue 인스턴스 생성-->
+    <div id="app">
+        {{person.name}} {{person.age}}    <!--생성된 변수 사용하기-->
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app", // 이렇게 하면 id=app인 곳에는 Vue를 사용할 수 있게 된다.
+            data: {     // 변수 선언
+                person: {
+                    name: "Song Dae Sun",
+                    age: 22
+                }
+            },
+            method:{    // 함수 정의
+
+            }
+        })
+
+    </script>
+</body>
+</html>
