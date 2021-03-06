@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Basic</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 </head>
 <body>
     <!--Vue 인스턴스 생성-->
     <div id="app">
-        {{person.name}} {{person.age}}    <!--생성된 변수 사용하기-->
+        <div>
+            {{person.name}} {{person.age}}    <!--생성된 변수 사용하기-->
+        </div>
+        <div>
+            {{nextYear('안녕하세요')}}           <!--생성된 함수 사용하기-->
+        </div>
     </div>
 
     <script>
@@ -21,10 +26,16 @@
                     age: 22
                 }
             },
-            method:{    // 함수 정의
-
+            methods:{    // 함수 정의
+                //nextYear: function(greeting){
+                nextYear(greeting){
+                    return `${greeting}! ${this.person.name}은(는) 내년에 ${this.person.age+1}살 입니다.`;
+                },
+                otherMethod: function(greeting){
+                    this.nextYear(greeting);
+                }
             }
-        })
+        });
 
     </script>
 </body>
