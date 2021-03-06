@@ -37,6 +37,24 @@
             <form v-on:submit.prevent="submitForm()">                  
                 <input type="text"><br>
                 <button type="submit"> submit </button>                 <!--event-->
+                <br>
+            </form>
+        </div>
+        <!--event로 처리-->
+        <!--
+        <div> 
+            <form v-on:submit.prevent="submitForm()">                  
+                <input type="text" :value = "text" v-on:keyup><br>
+                <input type="text" :value = "text" @keyup="updateText "><br>
+                {{text}}<br>             
+            </form>
+        </div>
+        -->
+        <div> <!--양방향 binding-->
+            <form v-on:submit.prevent="submitForm()">                  
+                <br>
+                <input type="text" v-model="text"><br>
+                {{text}}<br>               
             </form>
         </div>
     </div>
@@ -54,6 +72,7 @@
                 inputType: 'text',              //data 바인딩 용도
                 link: "https://github.com/",
                 year: 2021,
+                text: "hello",
                 
             },
             methods:{    // 함수 정의
@@ -79,6 +98,10 @@
                 submitForm(){       //for event
                     alert("submitted!");
                     console.log("reload");
+                },
+                updateText(event){
+                    //console.log(event);
+                    this.text = event.target.value;
                 },
             }
         });
