@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <!--Vue 인스턴스 생성-->
+    <div id="app1">
+        {{name}}
+        <button @click = "changeText"> Click </button>
+        <button @click = "changeText2"> Click2 </button>
+    </div>
+    <div id="app2">
+        {{name}}
+        <button @click = "changeText"> Click </button>
+        <button @click = "changeText2"> Click2 </button>
+    </div>
+
+    <script>
+        // Vue를 하나의 변수로 설정하여 다른 vue인스턴스에서도 사용가능하게 한다.
+        const app1 = new Vue({ 
+            el: "#app1", 
+            data: {     // 변수 선언
+                name : "DS1",
+            },
+            methods:{    // 함수 정의
+                changeText(){
+                    this.name = "updated DS1"
+                },
+                changeText2(){
+                    app2.name = "updated DS1"
+                }
+            },
+        });
+
+        const app2 = new Vue({
+            el: "#app2", 
+            data: {     // 변수 선언
+                name : "DS2",
+            },
+            methods:{    // 함수 정의
+                changeText(){
+                    this.name = "updated DS2"
+                },
+                changeText2(){
+                    app1.name = "updated DS2"
+                }
+            },
+        });
+
+    </script>
+</body>
+</html>
