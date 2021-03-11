@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <!--Vue 인스턴스 생성-->
+    <div id="app">
+        <div>
+            {{people[0].name}} {{people[0].age}}
+        </div>
+        <div>
+            {{people[1].name}} {{people[1].age}}
+        </div>
+        <div>
+            {{people[2].name}} {{people[2].age}}
+        </div>
+        <div>
+            {{people[3].name}} {{people[3].age}}    
+        </div>
+
+        <br>
+        <br>
+
+        <div v-for="person in people">
+            {{person.name}} {{person.age}}
+        </div>
+
+        <br>
+        <br>
+
+        <div v-for="(person, index) in people">
+            {{person.name}} {{person.age}} {{index}}
+        </div>
+
+        <br>
+        <br>
+
+        <!--key는 아주 unique하게 사용해야 한다.-->
+        <!--일반적으로는 person.id를 따로 만들어서 사용한다.-->
+        <!--DB에서 정보를 받아오면 id가 있기에, 그것을 주로 사용한다.-->
+        <div v-for="(person, index) in people" :key="person.name + '-' + person.age">
+            {{person.name}} {{person.age}} {{index}}
+        </div>
+
+        <br>
+        <br>
+
+        <!--객체에 for 사용-->
+        <div v-for="(value, key, index) in people[0]">
+            {{index}}. {{key}}: {{value}}
+        </div>
+
+
+
+    </div>
+
+    
+
+    <script>
+        new Vue({
+            el: "#app", // 이렇게 하면 id=app인 곳에는 Vue를 사용할 수 있게 된다.
+            data: {     // 변수 선언
+                people:[
+                    {name: 'a', age: 20},
+                    {name: 'b', age: 21},
+                    {name: 'c', age: 22},
+                    {name: 'd', age: 23},
+                    {name: 'e', age: 24},
+                ]
+            },
+            methods:{    // 함수 정의
+            },
+        });
+
+    </script>
+</body>
+</html>
