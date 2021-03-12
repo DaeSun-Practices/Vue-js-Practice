@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <!--Vue 인스턴스 생성-->
+    <div id="app1">
+        <name-button></name-button>
+        
+    </div>
+    <div id="app2">
+        <name-button></name-button>
+    </div>
+
+    <script>
+        Vue.component("hello-world",{
+            //template는 html code가 들어간다.
+            template: 
+                //html tag의 경우, 하나의 tag로 묶어주어야 한다.
+                `<div> 
+                    hello world
+                </div>`,
+            });
+
+        // Vue.Component(tag, option)
+        Vue.component("name-button",{
+
+            //template는 html code가 들어간다.
+            template: 
+                //html tag의 경우, 하나의 tag로 묶어주어야 한다.
+                `<div> 
+                    {{name}} 
+                    <hello-world> </hello-world> <!--전역등록 컴포넌트이다. 컴포넌트에 다른 컴포넌트를 넣는 것이다.-->
+                    <button @click = 'changeText'> Click </button> 
+                </div>`,
+
+            // 변수가 reference로 넘어가기 때문에 함수로 바꿔줘야 한다.
+            data() { 
+                return {
+                    name : "DS1"
+                }
+            },
+            methods:{    // 함수 정의
+                changeText(){
+                    this.name = "updated DS1"
+                },
+            },
+        });
+
+        
+        //지역변수로써의 컴포넌트 선언
+        const component_button = {
+            template: 
+                `<div> 
+                    local
+                </div>`
+        };
+        
+        const app1 = new Vue({ 
+            el: "#app1", 
+            components: {
+                //tag명, 컴포넌트 변수 명
+                'component-button': component_button
+            }
+        });
+
+        const app2 = new Vue({
+            el: "#app2", 
+        });
+
+    </script>
+</body>
+</html>
